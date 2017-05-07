@@ -1031,6 +1031,59 @@ fmt.Println("Hello, World!")
 	return mapB, nil
 }
 
+// Checks the government data to verify whether the title information for this particular address is clean
+func (t *MORTGAGE) getInterestedUsers(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
+
+fmt.Println("Hello, World!")
+	
+
+
+	
+	
+	
+		
+	// Get the row pertaining to this Email
+	var columns []shim.Column	
+	rows, err := stub.GetRows("BorrowerDetails", columns)
+	if err != nil {
+		return nil, fmt.Errorf("Failed to retrieve row")
+	}
+	res2E := []*BorrowerDetails{}
+	for row := range rows {	
+		newApp:= new(BorrowerDetails)
+		newApp.UserID = row.Columns[0].GetString_()
+		newApp.Gender = row.Columns[1].GetString_()
+		newApp.FirstName = row.Columns[2].GetString_()
+		newApp.LastName = row.Columns[3].GetString_()
+		newApp.Dob = row.Columns[4].GetString_()
+		newApp.Email = row.Columns[5].GetString_()
+		newApp.Phone = row.Columns[6].GetString_()
+		newApp.Address = row.Columns[7].GetString_()
+		newApp.City = row.Columns[8].GetString_()
+		newApp.Zip = row.Columns[9].GetString_()
+		newApp.PropertyAddress = row.Columns[10].GetString_()
+		newApp.PropertyCity = row.Columns[11].GetString_()
+		newApp.PropertyZip = row.Columns[12].GetString_()
+		newApp.LenderId = row.Columns[13].GetString_()
+		newApp.LenderName = row.Columns[14].GetString_()
+		newApp.ProductName = row.Columns[15].GetString_()
+		newApp.LoanAmount = row.Columns[16].GetString_()
+		newApp.InterestRate = row.Columns[17].GetString_()
+		newApp.DocumentsSubmitted = row.Columns[18].GetString_()
+		newApp.SwitchUserFlag = row.Columns[19].GetString_()
+		newApp.SwitchLenderId = row.Columns[20].GetString_()
+		newApp.SwitchLenderName = row.Columns[21].GetString_()
+		
+		if newApp.LenderId == "" {
+		res2E=append(res2E,newApp)		
+		}	
+	}
+    mapB, _ := json.Marshal(res2E)
+    fmt.Println(string(mapB))
+	
+	return mapB, nil
+}
+
 // Invoke invokes the chaincode
 func (t *MORTGAGE) Invoke(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
 
@@ -1082,6 +1135,9 @@ func (t *MORTGAGE) Query(stub shim.ChaincodeStubInterface, function string, args
 	}else if function == "fetchUserDetails" {
 		t := MORTGAGE{}
 		return t.fetchUserDetails(stub, args)	
+	}else if function == "getInterestedUsers" {
+		t := MORTGAGE{}
+		return t.getInterestedUsers(stub, args)	
 	}	
 	
 
