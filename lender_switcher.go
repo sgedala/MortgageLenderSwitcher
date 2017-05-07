@@ -830,10 +830,10 @@ fmt.Println("Hello, World!!!")
 		col13 := shim.Column{Value: &shim.Column_String_{String_: row.Columns[12].GetString_()}}
 		col14 := shim.Column{Value: &shim.Column_String_{String_: switchLenderId}}
 		col15 := shim.Column{Value: &shim.Column_String_{String_: switchLenderName}}
-		col16 := shim.Column{Value: &shim.Column_String_{String_: row.Columns[12].GetString_()}}
-		col17 := shim.Column{Value: &shim.Column_String_{String_: row.Columns[13].GetString_()}}
-		col18 := shim.Column{Value: &shim.Column_String_{String_: row.Columns[14].GetString_()}}
-		col19 := shim.Column{Value: &shim.Column_String_{String_: row.Columns[15].GetString_()}}
+		col16 := shim.Column{Value: &shim.Column_String_{String_: row.Columns[15].GetString_()}}
+		col17 := shim.Column{Value: &shim.Column_String_{String_: row.Columns[16].GetString_()}}
+		col18 := shim.Column{Value: &shim.Column_String_{String_: row.Columns[17].GetString_()}}
+		col19 := shim.Column{Value: &shim.Column_String_{String_: row.Columns[18].GetString_()}}
 		col20 := shim.Column{Value: &shim.Column_String_{String_: "No"}}
 		col21 := shim.Column{Value: &shim.Column_String_{String_: ""}}
 		col22 := shim.Column{Value: &shim.Column_String_{String_: ""}}
