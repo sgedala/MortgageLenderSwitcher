@@ -1004,7 +1004,8 @@ func (t *MORTGAGE) verifyTitleInfo(stub shim.ChaincodeStubInterface, args []stri
 	newApp.Zip = row.Columns[4].GetString_()
 	newApp.Info = row.Columns[5].GetString_()
 	if newApp.Address == address{
-		 mapB, _ := json.Marshal(res2E)
+	fmt.Println("inside cond")
+		 mapB, _ := json.Marshal(newApp)
 		 return mapB, nil
 		
 		}	
