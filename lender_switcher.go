@@ -274,7 +274,7 @@ fmt.Println("creating table !!!!! ")
 //registerUser to register a user
 func (t *MORTGAGE) registerUserDetails(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 
-fmt.Println("no of argumrents  %d",len(args) )
+		fmt.Println("registerUserDetails" )
 
 		
 	
@@ -314,7 +314,7 @@ fmt.Println("no of argumrents  %d",len(args) )
 //registerUser to register a user
 func (t *MORTGAGE) registerLender(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 
-fmt.Println("no of argumrents  %d",len(args) )
+fmt.Println("registerLender" )
 
 		
 	
@@ -357,10 +357,10 @@ fmt.Println("no of argumrents  %d",len(args) )
 //registerUser to register a user
 func (t *MORTGAGE) registerBorrower(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 
-fmt.Println("no of argumrents  %d",len(args) )
+	fmt.Println("registerBorrower" )
 
 
-		uid:=args[0]
+	uid:=args[0]
 	gender:=args[1]
 	firstName:=args[2]
 	lastName:=args[3]
@@ -430,7 +430,7 @@ fmt.Println("no of argumrents  %d",len(args) )
 //Registering property and their title info
 func (t *MORTGAGE) registerTitleInfo(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 
-fmt.Println("no of argumrents  %d",len(args) )
+	fmt.Println("registerTitleInfo")
 
 
 	name:=args[0]
@@ -468,7 +468,7 @@ fmt.Println("no of argumrents  %d",len(args) )
 // to get the deatils of a borrowers against lenderid 
 func (t *MORTGAGE) getBorowersWithLenderId(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 
-fmt.Println("Hello, World!")
+	fmt.Println("getBorowersWithLenderId")
 	
 
 	if len(args) != 1 {
@@ -528,7 +528,7 @@ fmt.Println("Hello, World!")
 // to get the deatils of a product against productId 
 func (t *MORTGAGE) getProductRatesFromLender(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 
-fmt.Println("Hello, World!")
+	fmt.Println("getProductRatesFromLender")
 	
 
 	productId := args[0]
@@ -536,10 +536,7 @@ fmt.Println("Hello, World!")
 
 	// Get the row pertaining to this productId
 	var columns []shim.Column
-	//col3 := shim.Column{Value: &shim.Column_String_{String_: productId}}
-	
-	//columns = append(columns, col3)
-fmt.Println("Hello, World!!!")
+
 	rows, err := stub.GetRows("LenderDetails", columns)
 	fmt.Println("Hello, World!")
 	fmt.Println(err)
@@ -547,11 +544,6 @@ fmt.Println("Hello, World!!!")
 		jsonResp := "{\"Error\":\"Failed getting the details of the product with id  " + productId + "\"}"
 		return nil, errors.New(jsonResp)
 	}
-
-	// GetRows returns empty message if key does not exist
-	
-	
-
 	
 	res2E :=  []*LenderDetails{}
 	for row := range rows { 
@@ -579,7 +571,7 @@ fmt.Println("Hello, World!!!")
 // to get the deatils of a product against lenderId 
 func (t *MORTGAGE) getLenderDetails(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 
-fmt.Println("Hello, World!")
+	fmt.Println("getLenderDetails")
 	
 
 	lenderId := args[0]
@@ -590,7 +582,7 @@ fmt.Println("Hello, World!")
 	col1 := shim.Column{Value: &shim.Column_String_{String_: lenderId}}
 	
 	columns = append(columns, col1)
-fmt.Println("Hello, World!!!")
+
 	row, err := stub.GetRow("LenderDetails", columns)
 	fmt.Println("Hello, World!")
 	fmt.Println(err)
@@ -676,7 +668,7 @@ func (t *MORTGAGE) getBorrower(stub shim.ChaincodeStubInterface, args []string) 
 // to get the deatils of a product against borrowerId 
 func (t *MORTGAGE) fetchBorrowerDetails(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 
-fmt.Println("Hello, World!")
+	fmt.Println("fetchBorrowerDetails")
 	
 
 	borrowerId := args[0]
@@ -687,7 +679,7 @@ fmt.Println("Hello, World!")
 	col1 := shim.Column{Value: &shim.Column_String_{String_: borrowerId}}
 	
 	columns = append(columns, col1)
-fmt.Println("Hello, World!!!")
+	fmt.Println("Hello, World!!!")
 	row, err := stub.GetRow("BorrowerDetails", columns)
 	fmt.Println("Hello, World!")
 	fmt.Println(err)
@@ -702,7 +694,7 @@ fmt.Println("Hello, World!!!")
 
 	
 	res2E :=  BorrowerDetails{}
-fmt.Println("user id  :!!!!!!!!!!!!%s", row.Columns[0].GetString_())
+	fmt.Println("user id  :!!!!!!!!!!!!%s", row.Columns[0].GetString_())
 	
 	res2E.UserID = row.Columns[0].GetString_()
 	res2E.Gender = row.Columns[1].GetString_()
@@ -738,7 +730,7 @@ fmt.Println("user id  :!!!!!!!!!!!!%s", row.Columns[0].GetString_())
 // to get the deatils of a user
 func (t *MORTGAGE) fetchUserDetails(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 
-fmt.Println("Hello, World!")
+	fmt.Println("fetchUserDetails")
 	
 
 	userId := args[0]
@@ -749,7 +741,7 @@ fmt.Println("Hello, World!")
 	col1 := shim.Column{Value: &shim.Column_String_{String_: userId}}
 	
 	columns = append(columns, col1)
-fmt.Println("Hello, World!!!")
+	fmt.Println("Hello, World!!!")
 	row, err := stub.GetRow("UserDetails", columns)
 	fmt.Println("Hello, World!")
 	fmt.Println(err)
@@ -764,7 +756,7 @@ fmt.Println("Hello, World!!!")
 
 	
 	res2E := UserDetails{}
-fmt.Println("user id  :!!!!!!!!!!!!%s", row.Columns[0].GetString_())
+	fmt.Println("user id  :!!!!!!!!!!!!%s", row.Columns[0].GetString_())
 	
 	res2E.UserID = row.Columns[0].GetString_()
 	res2E.Password = row.Columns[1].GetString_()
@@ -780,7 +772,7 @@ fmt.Println("user id  :!!!!!!!!!!!!%s", row.Columns[0].GetString_())
 }
 func (t *MORTGAGE) switchLenders(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 
-fmt.Println("Hello, World!")
+	fmt.Println("switchLenders")
 	
 
 	
@@ -796,7 +788,7 @@ fmt.Println("Hello, World!")
 	col1 := shim.Column{Value: &shim.Column_String_{String_: borrowerId}}
 	
 	colum = append(colum, col1)
-fmt.Println("Hello, World!!!")
+	fmt.Println("Hello, World!!!")
 	row, err := stub.GetRow("BorrowerDetails", colum)
 	fmt.Println("Hello, World!")
 	fmt.Println(err)
@@ -870,21 +862,18 @@ fmt.Println("Hello, World!!!")
 		if !ok {
 			return nil, errors.New("replaceRowTableOne operation failed. Row with given key does not exist")
 		}
-		if ok {
-			res2E :=  BorrowerDetails{}
-	
-	res2E.Status = "Success"
-	 mapB, _ := json.Marshal(res2E)
-	 return mapB,nil
-		}
-	
-return nil, nil
+		
+		
+		return nil,nil
+
+
+
 }
 
 
 func (t *MORTGAGE) updateSwitchLender(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 
-fmt.Println("Hello, World!")
+	fmt.Println("updateSwitchLender")
 	
 
 	
@@ -900,7 +889,7 @@ fmt.Println("Hello, World!")
 	col1 := shim.Column{Value: &shim.Column_String_{String_: borrowerId}}
 	
 	colum = append(colum, col1)
-fmt.Println("Hello, World!!!")
+	fmt.Println("Hello, World!!!")
 	row, err := stub.GetRow("BorrowerDetails", colum)
 	fmt.Println("Hello, World!")
 	fmt.Println(err)
@@ -932,15 +921,15 @@ fmt.Println("Hello, World!!!")
 		col11 := shim.Column{Value: &shim.Column_String_{String_: row.Columns[10].GetString_()}}
 		col12 := shim.Column{Value: &shim.Column_String_{String_: row.Columns[11].GetString_()}}
 		col13 := shim.Column{Value: &shim.Column_String_{String_: row.Columns[12].GetString_()}}
-		col14 := shim.Column{Value: &shim.Column_String_{String_: row.Columns[13].GetString_()}}
-		col15 := shim.Column{Value: &shim.Column_String_{String_: row.Columns[14].GetString_()}}
+		col14 := shim.Column{Value: &shim.Column_String_{String_: switchLenderId}}
+		col15 := shim.Column{Value: &shim.Column_String_{String_: switchLenderName}}
 		col16 := shim.Column{Value: &shim.Column_String_{String_: row.Columns[15].GetString_()}}
 		col17 := shim.Column{Value: &shim.Column_String_{String_: row.Columns[16].GetString_()}}
 		col18 := shim.Column{Value: &shim.Column_String_{String_: row.Columns[17].GetString_()}}
 		col19:= shim.Column{Value: &shim.Column_String_{String_: row.Columns[18].GetString_()}}
-		col20 := shim.Column{Value: &shim.Column_String_{String_: "Yes"}}
-		col21 := shim.Column{Value: &shim.Column_String_{String_: switchLenderId}}
-		col22 := shim.Column{Value: &shim.Column_String_{String_: switchLenderName}}
+		col20 := shim.Column{Value: &shim.Column_String_{String_: "No"}}
+		col21 := shim.Column{Value: &shim.Column_String_{String_: ""}}
+		col22 := shim.Column{Value: &shim.Column_String_{String_: ""}}
 		
 		columns = append(columns, &col1)
 		columns = append(columns, &col2)
@@ -975,20 +964,16 @@ fmt.Println("Hello, World!!!")
 			return nil, errors.New("replaceRowTableOne operation failed. Row with given key does not exist")
 		}
 
-		if ok {
-			res2E :=  BorrowerDetails{}
-	
-	res2E.Status = "Success"
-	 mapB, _ := json.Marshal(res2E)
-	 return mapB,nil
-		}
-return nil,nil
+		
+	 return nil,nil
+
+
 }
 
 // Checks the government data to verify whether the title information for this particular address is clean
 func (t *MORTGAGE) verifyTitleInfo(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 
-fmt.Println("Hello, World!")
+	fmt.Println("verifyTitleInfo")
 	
 
 
@@ -1008,7 +993,8 @@ fmt.Println("Hello, World!")
 	}
 
 	// GetRows returns empty message if key does not exist
-	res2E :=  []*TitleInfo{}
+
+	res2E := TitleInfo{}
 	for row := range rows { 
 	newApp:= new(TitleInfo)
 	newApp.Name = row.Columns[0].GetString_()
@@ -1018,7 +1004,9 @@ fmt.Println("Hello, World!")
 	newApp.Zip = row.Columns[4].GetString_()
 	newApp.Info = row.Columns[5].GetString_()
 	if newApp.Address == address{
-		res2E=append(res2E,newApp)		
+		 mapB, _ := json.Marshal(res2E)
+		 return mapB, nil
+		
 		}	
 		
 		}
@@ -1034,7 +1022,7 @@ fmt.Println("Hello, World!")
 // Checks the government data to verify whether the title information for this particular address is clean
 func (t *MORTGAGE) getInterestedUsers(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 
-fmt.Println("Hello, World!")
+	fmt.Println("getInterestedUsers")
 	
 
 
