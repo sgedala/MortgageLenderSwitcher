@@ -510,7 +510,12 @@ fmt.Println("Hello, World!")
 		newApp.SwitchLenderId = row.Columns[20].GetString_()
 		newApp.SwitchLenderName = row.Columns[21].GetString_()
 		
-		if (newApp.LenderId == lenderId || (newApp.SwitchUserFlag == "Y" && newApp.SwitchLenderName == newApp.UserID)){
+		fmt.Println("Hello, World!%s",newApp.LenderId)
+		fmt.Println("Hello, World!%s",lenderId)
+		fmt.Println("Hello, World!%s",newApp.SwitchUserFlag)
+		fmt.Println("Hello, World!%s",newApp.SwitchLenderId)
+		if (newApp.LenderId == lenderId || (newApp.SwitchUserFlag == "Yes" && newApp.SwitchLenderId ==lenderId)){
+		fmt.Println("--------------------------------------------------------------------------------")
 		res2E=append(res2E,newApp)		
 		}	
 	}
