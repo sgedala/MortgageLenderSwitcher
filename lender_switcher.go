@@ -510,7 +510,7 @@ fmt.Println("Hello, World!")
 		newApp.SwitchLenderId = row.Columns[20].GetString_()
 		newApp.SwitchLenderName = row.Columns[21].GetString_()
 		
-		if newApp.LenderId == lenderId{
+		if (newApp.LenderId == lenderId || (newApp.SwitchUserFlag == "Y" && newApp.SwitchLenderName == newApp.UserID)){
 		res2E=append(res2E,newApp)		
 		}	
 	}
